@@ -20,7 +20,9 @@ jobs:
         with:
           node-version: "22"
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm install
       - name: Run tests
         id: run-tests
+        working-directory: ./frontend
         run: npm run test
