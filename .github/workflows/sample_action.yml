@@ -1,0 +1,26 @@
+name: Run tests
+run-name: Run frontend tests ${{github.repository}}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      models: read
+      contents: read
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+      - name: Setup Node
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        id: run-tests
+        run: npm run test
