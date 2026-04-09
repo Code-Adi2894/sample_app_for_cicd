@@ -20,7 +20,11 @@ jobs:
       - name: Run tests and capture output
         id: run-tests
         working-directory: ./frontend
-        run: npm test 2>&1 | tee test-output.log
+        run: |
+          my_key={echo "my_output<<EOF"
+          npm run test
+          echo "EOF"
+          } >> $GITHUB_OUTPUT
 
       - name: Upload test result
-        run: cat test-output.log
+        run: echo "The previous step output is ${{steps.run-tests.outputs.my_key}}"
