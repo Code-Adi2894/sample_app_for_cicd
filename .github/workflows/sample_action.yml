@@ -21,10 +21,8 @@ jobs:
         id: run-tests
         working-directory: ./frontend
         run: |
-          my_key={echo "my_output<<EOF"
-          npm run test
-          echo "EOF"
-          } >> $GITHUB_OUTPUT
+          my_key=$(npm run test)
+          echo "myKey=$myKey" >> $GITHUB_OUTPUT
 
       - name: Upload test result
         run: echo "The previous step output is ${{steps.run-tests.outputs.my_key}}"
