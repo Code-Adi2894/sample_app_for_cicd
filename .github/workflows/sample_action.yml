@@ -23,7 +23,7 @@ jobs:
         run: |
           my_key=$(npm run test)
           echo "my_key<<EOF" >> $GITHUB_OUTPUT
-          echo "$my_key" >> $GITHUB_OUTPUT
+          echo "my_key=$my_key" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload test result
