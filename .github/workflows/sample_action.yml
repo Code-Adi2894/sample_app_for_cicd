@@ -20,10 +20,10 @@ jobs:
       - name: Run tests and capture output
         id: run-tests
         working-directory: ./frontend
-        run: npm test -- --json --outputFile=results.json
+        run: npm test 2>&1 | tee test-output.log
 
       - name: Upload test result
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: ./frontend/results.json
+          path: cat test-output.log
