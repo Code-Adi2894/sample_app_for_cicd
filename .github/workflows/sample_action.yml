@@ -24,6 +24,9 @@ jobs:
           set -o pipefail
           npm test 2>&1 | tee test-output.log
 
+      - name: Check log file
+        run: ls -l ./frontend
+
       - name: Upload test logs
         uses: actions/upload-artifact@v4
         with:
