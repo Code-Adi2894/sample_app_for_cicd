@@ -23,7 +23,4 @@ jobs:
         run: npm test 2>&1 | tee test-output.log
 
       - name: Upload test result
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: cat test-output.log
+        run: cat test-output.log
