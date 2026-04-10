@@ -50,12 +50,9 @@ jobs:
         with:
           prompt: |
             I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph.
-            Title: ${{ github.event.issue.title }}
-            Body: ${{ github.event.issue.body }}
 
       - name: Create issues
-        run: gh issue comment $ISSUE_NUMBER --body "$RESPONSE"
+        run: gh issue create --title "Automated issue " --body "$RESPONSE"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
           RESPONSE: ${{ steps.inference.outputs.response }}
