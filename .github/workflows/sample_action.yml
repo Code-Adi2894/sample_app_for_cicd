@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - main
+  issues:
+    types: opened
 jobs:
   test-frontend:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      models: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -36,5 +42,20 @@ jobs:
       - name: Upload test result
         continue-on-error: true
         run: |
-          echo "The response length is: ${{steps.run-tests.outputs.JSON_RESPONSE}}"
-        # env: OUTPUT:${{steps.run-tests.outputs.JSON_RESPONSE}}
+          echo ${{steps.run-tests.outputs.JSON_RESPONSE}}"
+
+      - name: Run AI inference
+        id: inference
+        uses: actions/ai-inference@v1
+        with:
+          prompt: |
+            I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph.
+            Title: ${{ github.event.issue.title }}
+            Body: ${{ github.event.issue.body }}
+
+      - name: Create issues
+        run: gh issue comment $ISSUE_NUMBER --body "$RESPONSE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          RESPONSE: ${{ steps.inference.outputs.response }}
