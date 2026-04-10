@@ -31,11 +31,13 @@ jobs:
         # # Output the base encoded string
         # echo "result=$RESULT_ENCODED" >> GITHUB_OUTPUT
         run: |
-          my_key = {
+          {
             echo 'JSON_RESPONSE<<EOF'
-            curl https://google.com
+            curl -s https://google.com
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
       - name: Upload test result
-        run: echo "The previous step output is ${{steps.run-tests.outputs.my_key}}"
+        run: |
+          echo "The response length is: ${{steps.run-tests.outputs.JSON_RESPONSE}}"
+        # env: OUTPUT:${{steps.run-tests.outputs.JSON_RESPONSE}}
