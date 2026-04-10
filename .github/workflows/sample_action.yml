@@ -20,11 +20,22 @@ jobs:
       - name: Run tests and capture output
         id: run-tests
         working-directory: ./frontend
+        # run: |
+        # RESULT = ${
+        #   echo 'CONTENT<<EOF'
+        #   npm run test
+        #   echo EOF
+        #   }
+        # # Base64 encode
+        # RESULT_ENCODED = $(echo -n "$RESULT" | base64)
+        # # Output the base encoded string
+        # echo "result=$RESULT_ENCODED" >> GITHUB_OUTPUT
         run: |
-          # my_key=$(npm run test)
-          echo "CONTENT<<EOF" >> $GITHUB_OUTPUT
-          echo "my_key=$(npm run test)" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          my_key = {
+            echo 'JSON_RESPONSE<<EOF'
+            curl https://google.com
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
 
       - name: Upload test result
         run: echo "The previous step output is ${{steps.run-tests.outputs.my_key}}"
