@@ -35,8 +35,8 @@ jobs:
 
           {
             echo 'JSON_RESPONSE<<EOF'
-            echo '$OUTPUT'
-            echo EOF
+            echo "$OUTPUT"
+            echo 'EOF'
           } >> "$GITHUB_OUTPUT"
 
       - name: Upload test result
