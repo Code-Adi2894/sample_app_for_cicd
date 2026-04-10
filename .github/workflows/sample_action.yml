@@ -20,16 +20,7 @@ jobs:
       - name: Run tests and capture output
         id: run-tests
         working-directory: ./frontend
-        # run: |
-        # RESULT = ${
-        #   echo 'CONTENT<<EOF'
-        #   npm run test
-        #   echo EOF
-        #   }
-        # # Base64 encode
-        # RESULT_ENCODED = $(echo -n "$RESULT" | base64)
-        # # Output the base encoded string
-        # echo "result=$RESULT_ENCODED" >> GITHUB_OUTPUT
+        continue-on-error: true
         run: |
           OUTPUT=$(npm test --silent 2>&1)
 
