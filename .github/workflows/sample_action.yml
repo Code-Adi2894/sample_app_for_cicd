@@ -33,7 +33,7 @@ jobs:
         run: |
           {
             echo 'JSON_RESPONSE<<EOF'
-            curl -s https://google.com
+            npm run test
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
