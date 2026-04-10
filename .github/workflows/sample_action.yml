@@ -34,6 +34,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: Upload test result
+        continue-on-error: true
         run: |
           echo "The response length is: ${{steps.run-tests.outputs.JSON_RESPONSE}}"
         # env: OUTPUT:${{steps.run-tests.outputs.JSON_RESPONSE}}
