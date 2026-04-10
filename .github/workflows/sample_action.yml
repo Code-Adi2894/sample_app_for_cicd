@@ -42,14 +42,14 @@ jobs:
       - name: Upload test result
         continue-on-error: true
         run: |
-          echo ${{steps.run-tests.outputs.JSON_RESPONSE}}"
+          echo ${{steps.run-tests.outputs.JSON_RESPONSE}}
 
       - name: Run AI inference
         id: inference
         uses: actions/ai-inference@v1
         with:
           prompt: |
-            I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph.
+            I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph. This is the output: $${{steps.run-tests.outputs.JSON_RESPONSE}}
 
       - name: Create issues
         run: gh issue create --title "Automated issue " --body "$RESPONSE"
