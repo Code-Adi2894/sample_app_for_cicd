@@ -49,7 +49,7 @@ jobs:
         uses: actions/ai-inference@v1
         with:
           prompt: |
-            I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph. This is the output: $${{steps.run-tests.outputs.JSON_RESPONSE}}
+            I am providing you the test console output of Jest runner. I want you to summarize the issue of the failed tests. only summarize it in one short paragraph. This is the output: ${{steps.run-tests.outputs.JSON_RESPONSE}}
 
       - name: Create issues
         run: gh issue create --title "Automated issue " --body "$RESPONSE"
