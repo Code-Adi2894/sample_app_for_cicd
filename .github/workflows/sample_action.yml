@@ -22,12 +22,15 @@ jobs:
         working-directory: ./frontend
         continue-on-error: true
         run: |
+          set +e
           OUTPUT=$(npm test --silent 2>&1)
-
+          EXIT_CODE=$?
+          set -e
           {
             echo 'JSON_RESPONSE<<EOF'
             echo "$OUTPUT"
             echo 'EOF'
+            echo "EXIT_CODE=$EXIT_CODE"
           } >> "$GITHUB_OUTPUT"
 
       - name: Upload test result
