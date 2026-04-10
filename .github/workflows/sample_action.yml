@@ -31,9 +31,11 @@ jobs:
         # # Output the base encoded string
         # echo "result=$RESULT_ENCODED" >> GITHUB_OUTPUT
         run: |
+          OUTPUT=$(npm test --silent 2>&1)
+
           {
             echo 'JSON_RESPONSE<<EOF'
-            npm run test
+            echo '$OUTPUT'
             echo EOF
           } >> "$GITHUB_OUTPUT"
 
