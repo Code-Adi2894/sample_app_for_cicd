@@ -29,13 +29,11 @@ jobs:
       - name: Authenticate Copilot
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "Authenticating Copilot agent..."
-          copilot login --token "$GH_TOKEN"
+        run: copilot "Explain the code in this repository" --programmatic
 
-      - name: Run frontend tests
-        working-directory: ./frontend
-        run: copilot -p "What is the name of the project?"
+      # - name: Run frontend tests
+      #   working-directory: ./frontend
+      #   run: copilot -p "What is the name of the project?"
 
       - name: Run tests and capture output
         id: run-tests
