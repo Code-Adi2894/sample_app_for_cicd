@@ -26,6 +26,13 @@ jobs:
       - name: Install Github Copilot CLI
         run: npm install -g @github/copilot
 
+      - name: Authenticate Copilot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Authenticating Copilot agent..."
+          copilot login --token "$GH_TOKEN"
+
       - name: Run frontend tests
         working-directory: ./frontend
         run: copilot -p "What is the name of the project?"
