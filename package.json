@@ -1,0 +1,23 @@
+{
+  "name": "sample_app_for_cicd",
+  "version": "1.0.0",
+  "description": "This is description",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-Adi2894/sample_app_for_cicd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Code-Adi2894/sample_app_for_cicd/issues"
+  },
+  "homepage": "https://github.com/Code-Adi2894/sample_app_for_cicd#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}

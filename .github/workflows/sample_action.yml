@@ -23,6 +23,13 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
+      - name: Install Github Copilot CLI
+        run: npm install @github/copilot
+
+      - name: Run frontend tests
+        working-directory: ./frontend
+        run: copilot
+
       - name: Run tests and capture output
         id: run-tests
         working-directory: ./frontend
