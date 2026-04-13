@@ -28,7 +28,7 @@ jobs:
 
       - name: Run frontend tests
         working-directory: ./frontend
-        run: copilot
+        run: copilot -p "What is the name of the project?"
 
       - name: Run tests and capture output
         id: run-tests
