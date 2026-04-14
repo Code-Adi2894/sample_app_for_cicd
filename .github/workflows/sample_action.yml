@@ -31,6 +31,9 @@ jobs:
           GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: copilot -p "Go through the frontend source code and suggest some tests."
 
+      - name: Initialize Playwright agents
+        run: npx playwright init-agents
+
       # - name: Run frontend tests
       #   working-directory: ./frontend
       #   run: copilot -p "What is the name of the project?"
