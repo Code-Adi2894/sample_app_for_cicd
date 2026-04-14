@@ -28,7 +28,7 @@ jobs:
 
       - name: Check Github MCP availability using Copilot CLI
         run: |
-          copilot -i --add-github-mcp-toolset discussions
+          !copilot --add-github-mcp-toolset repos
           echo "MCP_ENABLED=true" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.PAT }}
