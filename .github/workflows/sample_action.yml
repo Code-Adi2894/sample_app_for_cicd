@@ -24,8 +24,7 @@ jobs:
 
       - name: Authenticate Copilot and run copilot
         env:
-          COPILOT_TOKEN: ${{ secrets.COPILOT_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: copilot -p "Go through the frontend source code and suggest some tests. And write thoses tests under __test__ folder and push to main branch"
 
       # - name: Initialize Playwright agents
