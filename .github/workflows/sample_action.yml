@@ -1,6 +1,7 @@
 name: Run tests
 run-name: Run frontend tests ${{github.repository}}
-on: workflow_dispatch
+on:
+  workflow_dispatch:
 jobs:
   test-frontend:
     runs-on: ubuntu-latest
