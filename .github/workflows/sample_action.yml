@@ -28,7 +28,7 @@ jobs:
 
       - name: Authenticate Copilot
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
         run: copilot -p "Explain the code in this repository"
 
       # - name: Run frontend tests
