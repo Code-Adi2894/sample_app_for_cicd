@@ -26,13 +26,19 @@ jobs:
       - name: Install Github Copilot CLI
         run: npm install -g @github/copilot
 
-      - name: Authenticate Copilot and run copilot
+      - name: Check Github MCP availability using Copilot CLI
+        run: |
+          copilot --add-github-mcp-toolset discussions
+          echo "MCP_ENABLED=true" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.PAT }}
-        run: copilot -p "Go through the frontend source code and suggest some tests. And write thoses tests under __test__ folder"
+      - name: Generate file and push to main
+        run: |
+          if [ "$MCP_ENABLED" = "true" ]; then
+          copilot -p "Create a file hello.txt and push to main"
 
-      - name: Check __test__ folder
-        run: cd ./frontend/__tests__ && ls
+      # - name: Check __test__ folder
+      #   run: cd ./frontend/__tests__ && ls
 
       # - name: Initialize Playwright agents
       #   run: npx playwright init-agents
