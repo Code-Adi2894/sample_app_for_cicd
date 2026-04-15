@@ -29,13 +29,15 @@ jobs:
       - name: Check Github MCP availability using Copilot CLI
         run: |
           copilot -i "/mcp show github-mcp-server"
-          echo "MCP_ENABLED=true" >> $GITHUB_ENV
+          copilot -p "Create a file hello.txt and push to main"
         env:
           GH_TOKEN: ${{ secrets.PAT }}
 
-      - name: Generate file and push to main
-        if: ${{ env.MCP_ENABLED == 'true'}}
-        run: copilot -p "Create a file hello.txt and push to main"
+      # - name: Generate file and push to main
+      #   if: ${{ env.MCP_ENABLED == 'true'}}
+      #   run: copilot -p "Create a file hello.txt and push to main"
+      #   env:
+      #     GH_TOKEN: ${{ secrets.PAT }}
 
       # - name: Check __test__ folder
       #   run: cd ./frontend/__tests__ && ls
