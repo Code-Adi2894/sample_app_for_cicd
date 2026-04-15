@@ -32,10 +32,10 @@ jobs:
           echo "MCP_ENABLED=true" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.PAT }}
+
       - name: Generate file and push to main
-        run: |
-          if [ "$MCP_ENABLED" = "true" ]; then
-          copilot -p "Create a file hello.txt and push to main"
+        if: ${{ env.MCP_ENABLED == 'true'}}
+        run: copilot -p "Create a file hello.txt and push to main"
 
       # - name: Check __test__ folder
       #   run: cd ./frontend/__tests__ && ls
