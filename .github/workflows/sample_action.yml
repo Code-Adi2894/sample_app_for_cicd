@@ -34,7 +34,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT2 }}
 
       - name: Display summary
-        run: cat $GITHUB_STEP_SUMMARY
+        run: cat ${{GITHUB_STEP_SUMMARY}}
 
       # - name: Generate file and push to main
       #   if: ${{ env.MCP_ENABLED == 'true'}}
