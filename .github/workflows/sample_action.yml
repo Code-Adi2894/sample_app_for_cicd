@@ -28,13 +28,13 @@ jobs:
 
       - name: Check Github MCP availability using Copilot CLI
         run: |
-            copilot -p "Review the git log for this repository and write a bullet point summary of all code changes that were made today, with links to the relevant commit on GitHub. Above the bullet list give a description (max 100 words) summarizing the changes made. Write the details to summary.md" --allow-tool='shell(git:*)' --allow-tool=write --no-ask-user
+            copilot -p "Review the git log for this repository and write a bullet point summary of all code changes that were made today, with links to the relevant commit on GitHub. Above the bullet list give a description (max 100 words) summarizing the changes made. Write the details to summary.md. Push the summary.md to main" --allow-tool='shell(git:*)' --allow-tool=write --no-ask-user
             cat summary.md >> "$GITHUB_STEP_SUMMARY"
         env:
           GH_TOKEN: ${{ secrets.PAT2 }}
 
-      - name: Display summary
-        run: cat ${{GITHUB_STEP_SUMMARY}}
+      # - name: Display summary
+      #   run: cat $GITHUB_STEP_SUMMARY
 
       # - name: Generate file and push to main
       #   if: ${{ env.MCP_ENABLED == 'true'}}
